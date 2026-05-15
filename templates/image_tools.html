@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Image Tools - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Free online image resize, passport photo maker and signature resize tools.
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5">
+            Image Tools
+        </h1>
+
+        <p class="lead">
+            Free online tools for image resize, compression and conversion.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="card tool-card shadow p-4">
+
+                <h4>Resize Image to 50KB</h4>
+
+                <p>
+                    Compress images for government forms.
+                </p>
+
+                <a href="/resize-image-to-50kb/"
+                   class="btn btn-success">
+
+                    Open Tool
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card tool-card shadow p-4">
+
+                <h4>Resize Image to 100KB</h4>
+
+                <p>
+                    Compress images without quality loss.
+                </p>
+
+                <a href="/resize-image-to-100kb/"
+                   class="btn btn-success">
+
+                    Open Tool
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card tool-card shadow p-4">
+
+                <h4>Passport Photo Maker</h4>
+
+                <p>
+                    Create passport photos online instantly.
+                </p>
+
+                <a href="/passport-photo-maker/"
+                   class="btn btn-success">
+
+                    Open Tool
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card tool-card shadow p-4">
+
+                <h4>Signature Resize Tool</h4>
+
+                <p>
+                    Resize signatures for online applications.
+                </p>
+
+                <a href="/signature-resize-tool/"
+                   class="btn btn-success">
+
+                    Open Tool
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

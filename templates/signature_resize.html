@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Signature Resize Tool Online Free - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Resize and compress signature images online free for SSC, Railway and government forms.
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5">
+            Signature Resize Tool
+        </h1>
+
+        <p class="lead mt-3">
+
+            Resize and compress signature images online instantly.
+
+        </p>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card main-card shadow-lg p-5">
+
+                <form method="POST"
+                      enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Upload Signature
+                        </label>
+
+                        <input type="file"
+                               name="image"
+                               class="form-control form-control-lg"
+                               required>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-success btn-lg w-100">
+
+                        Resize Signature
+
+                    </button>
+
+                </form>
+
+                {% if signature_image %}
+
+                <div class="alert alert-success text-center mt-4">
+
+                    <h4>
+                        Signature Resized Successfully!
+                    </h4>
+
+                    <p class="mt-2">
+
+                        Final Size:
+                        <strong>{{ final_size }} KB</strong>
+
+                    </p>
+
+                    <img src="/media/{{ signature_image }}"
+                         class="img-fluid rounded shadow mt-3"
+                         style="max-height:200px;">
+
+                    <br><br>
+
+                    <a href="/media/{{ signature_image }}"
+                       download
+                       class="btn btn-success">
+
+                        Download Signature
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
