@@ -23,4 +23,10 @@ urlpatterns = [
 
     path('about/', views.about, name='about'),
 
+    path('privacy-policy/',views.privacy_policy, name='privacy_policy'),
+
+    path('disclaimer/',views.disclaimer, name='disclaimer'),
+
+    path('terms-and-conditions/',views.terms_conditions,name='terms_conditions'),
+
 ]

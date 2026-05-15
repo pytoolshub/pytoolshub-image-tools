@@ -249,3 +249,15 @@ def contact(request):
 def about(request):
 
     return render(request, 'about.html')
+
+def privacy_policy(request):
+
+    return render(request, 'privacy_policy.html')
+
+def disclaimer(request):
+
+    return render(request, 'disclaimer.html')
+
+def terms_conditions(request):
+
+    return render(request, 'terms_conditions.html')
