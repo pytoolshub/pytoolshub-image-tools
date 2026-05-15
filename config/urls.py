@@ -22,6 +22,9 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from tools.sitemaps import StaticViewSitemap
 
+from django.contrib.staticfiles.views import serve
+from django.views.generic.base import RedirectView
+
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -40,6 +43,15 @@ urlpatterns = [
         {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'
     ),
+
+    path(
+    'robots.txt',
+    serve,
+    {'path': 'robots.txt'}
+
+    ),
+
+
 
 ]
 
