@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+SITE_URL = "https://pytoolshub.onrender.com"
 
 # Application definition
 
