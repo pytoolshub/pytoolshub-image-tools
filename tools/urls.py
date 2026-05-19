@@ -29,4 +29,16 @@ urlpatterns = [
 
     path('terms-and-conditions/',views.terms_conditions,name='terms_conditions'),
 
+    path('jpg-to-png/', views.jpg_to_png, name='jpg_to_png'),
+
+    path('png-to-jpg/', views.png_to_jpg, name='png_to_jpg'),
+
+    path('jpg-to-pdf/', views.jpg_to_pdf, name='jpg_to_pdf'),
+
+    path('pdf-to-jpg/', views.pdf_to_jpg, name='pdf_to_jpg'),
+
+    path('merge-pdf/', views.merge_pdf, name='merge_pdf'),
+
+    path('split-pdf/', views.split_pdf, name='split_pdf'),
+
 ]

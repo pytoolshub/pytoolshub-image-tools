@@ -1,6 +1,10 @@
+
 from django.http import HttpResponse
 import fitz
 from django.shortcuts import render
+
+from pdf2image import convert_from_path
+from PyPDF2 import PdfMerger
 
 from PIL import Image
 from django.core.files.storage import FileSystemStorage
@@ -254,6 +258,38 @@ def privacy_policy(request):
 
     return render(request, 'privacy_policy.html')
 
+def jpg_to_png(request):
+
+    converted_image = None
+
+    if request.method == 'POST' and request.FILES.get('image'):
+
+        image = request.FILES['image']
+
+        fs = FileSystemStorage()
+
+        filename = fs.save(image.name, image)
+
+        image_path = fs.path(filename)
+
+        img = Image.open(image_path)
+
+        png_filename = filename.rsplit('.', 1)[0] + '.png'
+
+        png_path = os.path.join('media', png_filename)
+
+        img.save(png_path, 'PNG')
+
+        converted_image = png_filename
+
+    return render(
+        request,
+        'jpg_to_png.html',
+        {
+            'converted_image': converted_image
+        }
+    )
+
 def disclaimer(request):
 
     return render(request, 'disclaimer.html')
@@ -261,3 +297,189 @@ def disclaimer(request):
 def terms_conditions(request):
 
     return render(request, 'terms_conditions.html')
+
+def png_to_jpg(request):
+
+    converted_image = None
+
+    if request.method == 'POST' and request.FILES.get('image'):
+
+        image = request.FILES['image']
+
+        fs = FileSystemStorage()
+
+        filename = fs.save(image.name, image)
+
+        image_path = fs.path(filename)
+
+        img = Image.open(image_path).convert('RGB')
+
+        jpg_filename = filename.rsplit('.', 1)[0] + '.jpg'
+
+        jpg_path = os.path.join('media', jpg_filename)
+
+        img.save(jpg_path, 'JPEG')
+
+        converted_image = jpg_filename
+
+    return render(
+        request,
+        'png_to_jpg.html',
+        {
+            'converted_image': converted_image
+        }
+    )
+
+def jpg_to_pdf(request):
+
+    pdf_file = None
+
+    if request.method == 'POST':
+
+        image = request.FILES.get('image')
+
+        if image:
+
+            fs = FileSystemStorage()
+
+            filename = fs.save(image.name, image)
+
+            image_path = fs.path(filename)
+
+            pdf_filename = filename.rsplit('.', 1)[0] + '.pdf'
+
+            pdf_path = os.path.join('media', pdf_filename)
+
+            image_open = Image.open(image_path)
+
+            rgb_image = image_open.convert('RGB')
+
+            rgb_image.save(pdf_path)
+
+            pdf_file = pdf_filename
+
+    return render(
+        request,
+        'jpg_to_pdf.html',
+        {
+            'pdf_file': pdf_file
+        }
+    )
+
+def pdf_to_jpg(request):
+
+    converted_image = None
+
+    if request.method == 'POST':
+
+        pdf = request.FILES.get('pdf')
+
+        if pdf:
+
+            fs = FileSystemStorage()
+
+            filename = fs.save(pdf.name, pdf)
+
+            pdf_path = fs.path(filename)
+
+            images = convert_from_path(pdf_path)
+
+            jpg_filename = filename.rsplit('.', 1)[0] + '.jpg'
+
+            jpg_path = os.path.join('media', jpg_filename)
+
+            images[0].save(jpg_path, 'JPEG')
+
+            converted_image = jpg_filename
+
+    return render(
+        request,
+        'pdf_to_jpg.html',
+        {
+            'converted_image': converted_image
+        }
+    )
+
+def merge_pdf(request):
+
+    merged_pdf = None
+
+    if request.method == 'POST':
+
+        pdf1 = request.FILES.get('pdf1')
+        pdf2 = request.FILES.get('pdf2')
+
+        if pdf1 and pdf2:
+
+            fs = FileSystemStorage()
+
+            file1 = fs.save(pdf1.name, pdf1)
+            file2 = fs.save(pdf2.name, pdf2)
+
+            path1 = fs.path(file1)
+            path2 = fs.path(file2)
+
+            merger = PdfMerger()
+
+            merger.append(path1)
+            merger.append(path2)
+
+            merged_filename = 'merged.pdf'
+
+            merged_path = os.path.join('media', merged_filename)
+
+            merger.write(merged_path)
+
+            merger.close()
+
+            merged_pdf = merged_filename
+
+    return render(
+        request,
+        'merge_pdf.html',
+        {
+            'merged_pdf': merged_pdf
+        }
+    )
+
+def split_pdf(request):
+
+    split_pdf_file = None
+
+    if request.method == 'POST':
+
+        pdf = request.FILES.get('pdf')
+
+        if pdf:
+
+            fs = FileSystemStorage()
+
+            filename = fs.save(pdf.name, pdf)
+
+            pdf_path = fs.path(filename)
+
+            from PyPDF2 import PdfReader, PdfWriter
+
+            reader = PdfReader(pdf_path)
+
+            writer = PdfWriter()
+
+            writer.add_page(reader.pages[0])
+
+            split_filename = 'split_page_1.pdf'
+
+            split_path = os.path.join('media', split_filename)
+
+            with open(split_path, 'wb') as output_pdf:
+
+                writer.write(output_pdf)
+
+            split_pdf_file = split_filename
+
+    return render(
+        request,
+        'split_pdf.html',
+        {
+            'split_pdf_file': split_pdf_file
+        }
+    )
