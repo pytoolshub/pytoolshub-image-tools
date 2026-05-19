@@ -237,7 +237,7 @@ def robots_txt(request):
 User-agent: *
 Allow: /
 
-Sitemap: http://127.0.0.1:8000/sitemap.xml
+Sitemap: https://pytoolshub.onrender.com/sitemap.xml
 """
 
     return HttpResponse(data, content_type="text/plain")

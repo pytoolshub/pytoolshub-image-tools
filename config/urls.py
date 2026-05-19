@@ -44,12 +44,7 @@ urlpatterns = [
         name='django.contrib.sitemaps.views.sitemap'
     ),
 
-    path(
-    'robots.txt',
-    serve,
-    {'path': 'robots.txt'}
 
-    ),
 
 
 
