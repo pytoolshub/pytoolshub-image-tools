@@ -27,7 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-SITE_URL = "https://pytoolshub.onrender.com"
+SITE_URL = "https://pytoolshub.in"
 
 # Application definition
 
@@ -131,6 +131,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CSRF_TRUSTED_ORIGINS = [
     'https://pytoolshub.in',
 ]
+
+SECURE_SSL_REDIRECT = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
