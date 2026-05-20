@@ -31,6 +31,21 @@
 
 <style>
 
+    .dropdown-menu{
+    padding:12px;
+}
+
+.dropdown-item{
+    border-radius:10px;
+    padding:10px 14px;
+    transition:0.3s;
+}
+
+.dropdown-item:hover{
+    background:#10b981;
+    color:white;
+}
+
     h4{
     font-weight:700;
 }
@@ -140,6 +155,38 @@ footer a:hover{
     color:#10b981 !important;
 }
 
+    @media(max-width:768px){
+
+    .display-3{
+        font-size:2.2rem;
+    }
+
+    .main-card{
+        padding:25px !important;
+    }
+
+    .tool-card{
+        margin-bottom:20px;
+    }
+
+    h1{
+        font-size:2rem;
+    }
+
+    h2{
+        font-size:1.6rem;
+    }
+
+    h4{
+        font-size:1.2rem;
+    }
+
+    .btn{
+        font-size:15px;
+    }
+
+}
+
 </style>
 
 </head>
@@ -169,64 +216,144 @@ footer a:hover{
         <div class="collapse navbar-collapse"
              id="navbarNav">
 
-            <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
 
-                    <a class="nav-link"
-                       href="/">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                        Home
+    <li class="nav-item me-2">
+        <a class="nav-link fw-semibold"
+           href="/">
 
-                    </a>
+            Home
 
-                </li>
+        </a>
+    </li>
 
-                <li class="nav-item">
+    <li class="nav-item dropdown me-2">
 
-                    <a class="nav-link"
-                       href="/image-tools/">
+        <a class="nav-link dropdown-toggle fw-semibold"
+           href="#"
+           role="button"
+           data-bs-toggle="dropdown">
 
-                        Image Tools
+            Image Tools
 
-                    </a>
+        </a>
 
-                </li>
+        <ul class="dropdown-menu border-0 shadow rounded-4">
 
-                <li class="nav-item">
+            <li>
+                <a class="dropdown-item"
+                   href="/resize-image-to-50kb/">
 
-                    <a class="nav-link"
-                       href="/pdf-tools/">
+                    Resize Image to 50KB
 
-                        PDF Tools
+                </a>
+            </li>
 
-                    </a>
+            <li>
+                <a class="dropdown-item"
+                   href="/resize-image-to-100kb/">
 
-                </li>
+                    Resize Image to 100KB
 
-                <li class="nav-item">
+                </a>
+            </li>
 
-                    <a class="nav-link"
-                       href="/about/">
+            <li>
+                <a class="dropdown-item"
+                   href="/passport-photo-maker/">
 
-                        About
+                    Passport Photo Maker
 
-                    </a>
+                </a>
+            </li>
 
-                </li>
+            <li>
+                <a class="dropdown-item"
+                   href="/signature-resize-tool/">
 
-                <li class="nav-item">
+                    Signature Resize Tool
 
-                    <a class="nav-link"
-                       href="/contact/">
+                </a>
+            </li>
 
-                        Contact
+            <li>
+                <a class="dropdown-item"
+                   href="/jpg-to-png/">
 
-                    </a>
+                    JPG to PNG
 
-                </li>
+                </a>
+            </li>
 
-            </ul>
+            <li>
+                <a class="dropdown-item"
+                   href="/png-to-jpg/">
+
+                    PNG to JPG
+
+                </a>
+            </li>
+
+        </ul>
+
+    </li>
+
+    <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle fw-semibold"
+           href="#"
+           role="button"
+           data-bs-toggle="dropdown">
+
+            PDF Tools
+
+        </a>
+
+        <ul class="dropdown-menu border-0 shadow rounded-4">
+
+            <li>
+                <a class="dropdown-item"
+                   href="/jpg-to-pdf/">
+
+                    JPG to PDF
+
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item"
+                   href="/pdf-to-jpg/">
+
+                    PDF to JPG
+
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item"
+                   href="/merge-pdf/">
+
+                    Merge PDF
+
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item"
+                   href="/split-pdf/">
+
+                    Split PDF
+
+                </a>
+            </li>
+
+        </ul>
+
+    </li>
+
+</ul>
 
         </div>
 
