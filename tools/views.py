@@ -4,7 +4,8 @@ import fitz
 from django.shortcuts import render
 
 from pdf2image import convert_from_path
-from PyPDF2 import PdfMerger
+from PyPDF2 import PdfMerger,PdfReader, PdfWriter
+
 
 from PIL import Image
 from django.core.files.storage import FileSystemStorage
@@ -482,4 +483,88 @@ def split_pdf(request):
         {
             'split_pdf_file': split_pdf_file
         }
+    )
+
+
+
+def crop_image_online(request):
+
+    cropped_image = None
+
+    if request.method == "POST" and request.POST.get("crop_submit") == "1":
+
+        image = request.FILES.get("image")
+
+        if image:
+
+            left = int(request.POST.get("left", 0))
+            top = int(request.POST.get("top", 0))
+            right = int(request.POST.get("right", 200))
+            bottom = int(request.POST.get("bottom", 200))
+
+            fs = FileSystemStorage()
+
+            filename = fs.save(image.name, image)
+
+            file_path = fs.path(filename)
+
+            img = Image.open(file_path)
+
+            cropped = img.crop(
+                (left, top, right, bottom)
+            )
+
+            cropped_name = "cropped_" + filename
+
+            cropped_path = fs.path(cropped_name)
+
+            cropped.save(cropped_path)
+
+            cropped_image = fs.url(cropped_name)
+
+    else:
+
+        cropped_image = None
+
+    return render(
+        request,
+        "crop_image_online.html",
+        {
+            "cropped_image": cropped_image
+        }
+    )
+
+def compress_pdf(request):
+
+    compressed_file = None
+
+    if request.method == "POST":
+
+        pdf = request.FILES.get("pdf")
+
+        if pdf:
+
+            reader = PdfReader(pdf)
+
+            writer = PdfWriter()
+
+            for page in reader.pages:
+                page.compress_content_streams()
+                writer.add_page(page)
+
+            response = HttpResponse(
+                content_type="application/pdf"
+            )
+
+            response[
+                "Content-Disposition"
+            ] = 'attachment; filename="compressed.pdf"'
+
+            writer.write(response)
+
+            return response
+
+    return render(
+        request,
+        "compress_pdf.html"
     )

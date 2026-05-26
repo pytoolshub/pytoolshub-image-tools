@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5"
+         style="background:#eef8f1; min-height:80vh;">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h1 class="fw-bold display-4">
+                Compress PDF Online
+            </h1>
+
+            <p class="lead text-muted">
+
+                Reduce PDF file size online free.
+                Fast, simple and secure.
+
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7">
+
+                <div class="card border-0 shadow rounded-4 p-5">
+
+                    <form method="POST"
+                          enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="mb-4">
+
+                            <label class="fw-bold mb-2">
+
+                                Upload PDF File
+
+                            </label>
+
+                            <input type="file"
+                                   name="pdf"
+                                   accept=".pdf"
+                                   class="form-control"
+                                   required>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-success btn-lg w-100 rounded-pill">
+
+                            Compress PDF
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+
+                Frequently Asked Questions
+
+            </h2>
+
+            <div class="mb-4">
+
+                <h4>
+
+                    How to compress PDF online?
+
+                </h4>
+
+                <p>
+
+                    Upload your PDF and click
+                    Compress PDF.
+                    Your compressed file downloads instantly.
+
+                </p>
+
+            </div>
+
+            <div class="mb-4">
+
+                <h4>
+
+                    Is this free?
+
+                </h4>
+
+                <p>
+
+                    Yes.
+                    PyToolsHub PDF tools are completely free.
+
+                </p>
+
+            </div>
+
+            <div class="mb-4">
+
+                <h4>
+
+                    Is my PDF safe?
+
+                </h4>
+
+                <p>
+
+                    Yes.
+                    Files are processed securely.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>
+
+                    Works for college/job PDFs?
+
+                </h4>
+
+                <p>
+
+                    Yes.
+                    Great for application uploads.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

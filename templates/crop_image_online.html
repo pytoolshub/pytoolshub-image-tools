@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crop Image Online Free - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Crop JPG, JPEG and PNG images online free with PyToolsHub.
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5">
+
+            Crop Image Online
+
+        </h1>
+
+        <p class="lead">
+
+            Crop JPG, JPEG and PNG images online free.
+
+        </p>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-lg p-5 rounded-4">
+
+                <form method="POST"
+                      enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            Upload Image
+
+                        </label>
+
+                        <input type="file"
+                               name="image"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-6 mb-3">
+
+                            <label class="fw-bold">
+
+                                Left
+
+                            </label>
+
+                            <input type="number"
+                                   name="left"
+                                   class="form-control"
+                                   value="0">
+
+                        </div>
+
+                        <div class="col-6 mb-3">
+
+                            <label class="fw-bold">
+
+                                Top
+
+                            </label>
+
+                            <input type="number"
+                                   name="top"
+                                   class="form-control"
+                                   value="0">
+
+                        </div>
+
+                        <div class="col-6 mb-3">
+
+                            <label class="fw-bold">
+
+                                Right
+
+                            </label>
+
+                            <input type="number"
+                                   name="right"
+                                   class="form-control"
+                                   value="200">
+
+                        </div>
+
+                        <div class="col-6 mb-4">
+
+                            <label class="fw-bold">
+
+                                Bottom
+
+                            </label>
+
+                            <input type="number"
+                                   name="bottom"
+                                   class="form-control"
+                                   value="200">
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-success btn-lg w-100">
+
+                        Crop Image
+
+                    </button>
+
+                    <input type="hidden"
+                           name="crop_submit"
+                           value="1">
+
+                </form>
+
+                <!-- SUCCESS MESSAGE ONLY AFTER POST -->
+
+                {% if cropped_image %}
+
+                <div class="alert alert-success text-center mt-4">
+
+                    <h4>
+
+                        Image Cropped Successfully
+
+                    </h4>
+
+                    <a href="{{ cropped_image }}"
+                       download
+                       class="btn btn-success mt-2">
+
+                        Download Cropped Image
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SEO CONTENT -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="card shadow border-0 rounded-4 p-5">
+
+                <h2 class="fw-bold mb-4">
+
+                    Crop Image Online Free
+
+                </h2>
+
+                <p>
+
+                    PyToolsHub lets you crop images online free.
+                    Upload JPG, JPEG or PNG images,
+                    set crop values,
+                    and download instantly.
+
+                </p>
+
+                <p>
+
+                    Useful for passport photos,
+                    profile pictures,
+                    government forms,
+                    exam applications
+                    and social media posts.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FAQ -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="card shadow border-0 rounded-4 p-5">
+
+                <h2 class="fw-bold mb-4">
+
+                    Frequently Asked Questions
+
+                </h2>
+
+                <div class="mb-4">
+
+                    <h4>
+
+                        How to crop image online?
+
+                    </h4>
+
+                    <p>
+
+                        Upload your image,
+                        enter crop values
+                        and click crop image.
+
+                    </p>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <h4>
+
+                        Is this crop image tool free?
+
+                    </h4>
+
+                    <p>
+
+                        Yes.
+                        Completely free.
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h4>
+
+                        Which image formats supported?
+
+                    </h4>
+
+                    <p>
+
+                        JPG,
+                        JPEG
+                        and PNG.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

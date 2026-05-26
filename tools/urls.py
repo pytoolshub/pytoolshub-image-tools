@@ -41,4 +41,8 @@ urlpatterns = [
 
     path('split-pdf/', views.split_pdf, name='split_pdf'),
 
+    path('crop-image-online/',views.crop_image_online,name='crop_image_online'),
+
+    path("compress-pdf/",views.compress_pdf,name="compress_pdf"),
+
 ]
