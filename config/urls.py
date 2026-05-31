@@ -39,6 +39,15 @@ def ads_txt(request):
         content_type="text/plain",
     )
 
+def bing_verify(request):
+    return HttpResponse(
+        """<?xml version="1.0"?>
+<users>
+  <user>D72CE51F64CEF829388A7157602BA283</user>
+</users>""",
+        content_type="application/xml",
+    )
+
 
 urlpatterns = [
 
@@ -49,6 +58,8 @@ urlpatterns = [
     path('sitemap.xml',sitemap,{'sitemaps': sitemaps},name='django.contrib.sitemaps.views.sitemap'),
 
     path("ads.txt",ads_txt),
+
+    path("BingSiteAuth.xml", bing_verify),
 ]
 
 
