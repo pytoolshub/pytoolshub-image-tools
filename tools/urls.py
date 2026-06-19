@@ -45,4 +45,14 @@ urlpatterns = [
 
     path("compress-pdf/",views.compress_pdf,name="compress_pdf"),
 
+    path('calculator-tools/',views.calculator_tools,name='calculator_tools'),
+
+    path('age-calculator/',views.age_calculator,name='age_calculator'),
+
+    path('percentage-calculator/',views.percentage_calculator,name='percentage_calculator'),
+
+    path('percentage-calculator/',views.percentage_calculator,name='percentage_calculator'),
+
+    path('bmi-calculator/',views.bmi_calculator,name='bmi_calculator'),
+
 ]

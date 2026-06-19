@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Age Calculator - Calculate Your Exact Age Online | PyToolsHub
+{% endblock %}
+
+{% block description %}
+Free online age calculator. Calculate your exact age in years instantly from your date of birth.
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+```
+<h1 class="text-center mb-4">
+    Age Calculator
+</h1>
+
+<div class="card shadow p-4">
+
+    <label class="form-label">
+        Enter Your Date of Birth
+    </label>
+
+    <input type="date"
+           id="dob"
+           class="form-control">
+
+    <button class="btn btn-success mt-3"
+            onclick="calculateAge()">
+
+        Calculate Age
+
+    </button>
+
+    <div class="mt-4">
+
+        <h4 id="result"></h4>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+
+function calculateAge() {
+
+    const dob = new Date(
+        document.getElementById("dob").value
+    );
+
+    const today = new Date();
+
+    let age =
+        today.getFullYear() -
+        dob.getFullYear();
+
+    const monthDiff =
+        today.getMonth() -
+        dob.getMonth();
+
+    if (
+        monthDiff < 0 ||
+        (
+            monthDiff === 0 &&
+            today.getDate() < dob.getDate()
+        )
+    ) {
+        age--;
+    }
+
+    document.getElementById("result")
+        .innerHTML =
+        "Your Age is " + age + " Years";
+
+}
+
+</script>
+
+{% endblock %}

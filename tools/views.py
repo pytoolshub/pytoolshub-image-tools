@@ -568,3 +568,18 @@ def compress_pdf(request):
         request,
         "compress_pdf.html"
     )
+
+def calculator_tools(request):
+    return render(request, 'calculator_tools.html')
+
+def age_calculator(request):
+    return render(request,"age_calculator.html")
+
+def percentage_calculator(request):
+    return render(request,"percentage_calculator.html")
+
+def percentage_calculator(request):
+    return render(request, 'percentage_calculator.html')
+
+def bmi_calculator(request):
+    return render(request, 'bmi_calculator.html')
