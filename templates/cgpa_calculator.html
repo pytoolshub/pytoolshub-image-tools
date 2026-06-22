@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+CGPA Calculator | PyToolsHub
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-4">
+        CGPA Calculator
+    </h1>
+
+    <div class="card shadow p-4">
+
+        <label class="form-label">
+            Enter Total Grade Points
+        </label>
+
+        <input type="number"
+               id="gradePoints"
+               class="form-control">
+
+        <label class="form-label mt-3">
+            Enter Total Subjects
+        </label>
+
+        <input type="number"
+               id="subjects"
+               class="form-control">
+
+        <button class="btn btn-primary mt-3"
+                onclick="calculateCGPA()">
+            Calculate CGPA
+        </button>
+
+        <h4 class="mt-4"
+            id="result">
+        </h4>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateCGPA() {
+
+    let gp =
+        parseFloat(
+            document.getElementById("gradePoints").value
+        );
+
+    let subjects =
+        parseFloat(
+            document.getElementById("subjects").value
+        );
+
+    if (!gp || !subjects) {
+        document.getElementById("result").innerHTML =
+            "Please enter valid values";
+        return;
+    }
+
+    let cgpa = gp / subjects;
+
+    document.getElementById("result").innerHTML =
+        "Your CGPA is: " +
+        cgpa.toFixed(2);
+
+}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+EMI Calculator - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Free online EMI Calculator. Calculate monthly loan EMI instantly.
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-4">
+        EMI Calculator
+    </h1>
+
+    <div class="card shadow p-4">
+
+        <label>Loan Amount (₹)</label>
+
+        <input type="number"
+               id="loan"
+               class="form-control">
+
+        <label class="mt-3">
+            Interest Rate (%)
+        </label>
+
+        <input type="number"
+               id="rate"
+               class="form-control">
+
+        <label class="mt-3">
+            Loan Tenure (Years)
+        </label>
+
+        <input type="number"
+               id="years"
+               class="form-control">
+
+        <button class="btn btn-success mt-3"
+                onclick="calculateEMI()">
+
+            Calculate EMI
+
+        </button>
+
+        <div class="mt-4">
+            <h4 id="result"></h4>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateEMI() {
+
+    let P =
+        parseFloat(
+            document.getElementById("loan").value
+        );
+
+    let annualRate =
+        parseFloat(
+            document.getElementById("rate").value
+        );
+
+    let years =
+        parseFloat(
+            document.getElementById("years").value
+        );
+
+    let r = annualRate / 12 / 100;
+
+    let n = years * 12;
+
+    let emi =
+        (P * r * Math.pow(1 + r, n))
+        /
+        (Math.pow(1 + r, n) - 1);
+
+    document.getElementById("result")
+        .innerHTML =
+        "Monthly EMI: ₹" +
+        emi.toFixed(2);
+
+}
+
+</script>
+
+{% endblock %}

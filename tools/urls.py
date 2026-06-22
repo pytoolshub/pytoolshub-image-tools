@@ -9,6 +9,8 @@ urlpatterns = [
 
     path('pdf-tools/', views.pdf_tools, name='pdf_tools'),
 
+    path('resize_image_to_20kb/',views.resize_20kb,name='resize_image_to_20kb'),
+
     path('resize-image-to-50kb/', views.resize_50kb, name='resize_50kb'),
 
     path('resize-image-to-100kb/', views.resize_100kb, name='resize_100kb'),
@@ -51,8 +53,10 @@ urlpatterns = [
 
     path('percentage-calculator/',views.percentage_calculator,name='percentage_calculator'),
 
-    path('percentage-calculator/',views.percentage_calculator,name='percentage_calculator'),
-
     path('bmi-calculator/',views.bmi_calculator,name='bmi_calculator'),
+
+    path('cgpa-calculator/', views.cgpa_calculator, name='cgpa_calculator'),
+
+    path('emi-calculator/', views.emi_calculator, name='emi_calculator'),
 
 ]

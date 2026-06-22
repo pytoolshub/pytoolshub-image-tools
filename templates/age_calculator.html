@@ -5,43 +5,74 @@ Age Calculator - Calculate Your Exact Age Online | PyToolsHub
 {% endblock %}
 
 {% block description %}
-Free online age calculator. Calculate your exact age in years instantly from your date of birth.
+Free online Age Calculator. Calculate your exact age in years, months and days instantly from your date of birth.
 {% endblock %}
 
 {% block content %}
 
 <div class="container py-5">
 
-```
-<h1 class="text-center mb-4">
-    Age Calculator
-</h1>
+    <h1 class="text-center fw-bold mb-3">
+        Age Calculator
+    </h1>
 
-<div class="card shadow p-4">
+    <p class="text-center text-secondary mb-4">
+        Calculate your exact age in years, months and days instantly.
+    </p>
 
-    <label class="form-label">
-        Enter Your Date of Birth
-    </label>
+    <div class="card shadow-lg p-4 mx-auto"
+         style="max-width:600px;">
 
-    <input type="date"
-           id="dob"
-           class="form-control">
+        <label class="form-label fw-semibold">
+            Select Your Date of Birth
+        </label>
 
-    <button class="btn btn-success mt-3"
+        <input
+            type="date"
+            id="dob"
+            class="form-control">
+
+        <button
+            class="btn btn-primary mt-3 w-100"
             onclick="calculateAge()">
 
-        Calculate Age
+            Calculate Age
 
-    </button>
+        </button>
 
-    <div class="mt-4">
+        <div class="mt-4 text-center">
 
-        <h4 id="result"></h4>
+            <h4 id="result"></h4>
+
+        </div>
 
     </div>
 
-</div>
-```
+    <!-- About Tool Section -->
+
+    <div class="mt-5">
+
+        <h2>
+            About Age Calculator
+        </h2>
+
+        <p>
+            This free online Age Calculator helps you find your exact age
+            from your date of birth. It calculates your age in years,
+            months and days instantly.
+        </p>
+
+        <p>
+            Students, employees, government job applicants and passport
+            applicants can use this tool to quickly determine their age.
+        </p>
+
+        <p>
+            No registration is required. The calculation is performed
+            directly in your browser for privacy and speed.
+        </p>
+
+    </div>
 
 </div>
 
@@ -49,33 +80,44 @@ Free online age calculator. Calculate your exact age in years instantly from you
 
 function calculateAge() {
 
-    const dob = new Date(
-        document.getElementById("dob").value
-    );
+    const dobInput =
+        document.getElementById("dob").value;
 
+    if (!dobInput) {
+
+        document.getElementById("result").innerHTML =
+            "Please select your date of birth.";
+
+        return;
+    }
+
+    const dob = new Date(dobInput);
     const today = new Date();
 
-    let age =
+    let years =
         today.getFullYear() -
         dob.getFullYear();
 
-    const monthDiff =
+    let months =
         today.getMonth() -
         dob.getMonth();
 
-    if (
-        monthDiff < 0 ||
-        (
-            monthDiff === 0 &&
-            today.getDate() < dob.getDate()
-        )
-    ) {
-        age--;
+    let days =
+        today.getDate() -
+        dob.getDate();
+
+    if (days < 0) {
+        months--;
+        days += 30;
     }
 
-    document.getElementById("result")
-        .innerHTML =
-        "Your Age is " + age + " Years";
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    document.getElementById("result").innerHTML =
+        `${years} Years, ${months} Months, ${days} Days`;
 
 }
 

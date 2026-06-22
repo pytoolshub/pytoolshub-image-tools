@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Resize Image to 20KB Online Free - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Resize image to 20KB online free for SSC, Railway, OJEE, passport and government job forms.
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5">
+            Resize Image to 20KB
+        </h1>
+
+        <p class="lead mt-3">
+
+            Compress JPG and PNG images to exactly 20KB online free.
+
+        </p>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card main-card shadow-lg p-5">
+
+                <form method="POST"
+                      enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Upload Image
+                        </label>
+
+                        <input type="file"
+                               name="image"
+                               class="form-control form-control-lg"
+                               required>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-success btn-lg w-100">
+
+                        Resize to 20KB
+
+                    </button>
+
+                </form>
+
+                {% if compressed_image %}
+
+                <div class="alert alert-success text-center mt-4">
+
+                    <h4>
+                        Image Resized Successfully!
+                    </h4>
+
+                    <p class="mt-2">
+
+                        Final Size:
+                        <strong>{{ final_size }} KB</strong>
+
+                    </p>
+
+                    <img src="/media/{{ compressed_image }}"
+                         class="img-fluid rounded shadow mt-3"
+                         style="max-height:300px;">
+
+                    <br><br>
+
+                    <a href="/media/{{ compressed_image }}"
+                       download
+                       class="btn btn-success">
+
+                        Download Image
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
+
+            <h2 class="fw-bold mb-4">
+                Resize Image to 20KB Online Free
+            </h2>
+
+            <p class="lead">
+
+                PyToolsHub provides a free online image resizer tool
+                to compress images to exactly 50KB for government forms,
+                job applications, exam forms and online submissions.
+
+            </p>
+
+            <p>
+
+                This tool supports JPG, JPEG and PNG image formats.
+                You can resize images quickly without losing much quality.
+
+            </p>
+
+            <p>
+
+                Our online image compressor is useful for:
+                SSC forms, Railway forms, UPSC applications,
+                passport uploads, online registrations and more.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Frequently Asked Questions
+            </h2>
+
+            <div class="mb-4">
+
+                <h4>
+                    How to resize image to 20KB online free?
+                </h4>
+
+                <p>
+                    Upload JPG, JPEG or PNG image using our free online tool,
+                    and the image will automatically resize to 20KB.
+                </p>
+
+            </div>
+
+            <div class="mb-4">
+
+                <h4>
+                    Is this 20KB image resizer free?
+                </h4>
+
+                <p>
+                    Yes, PyToolsHub provides completely free
+                    image resizing tools online.
+                </p>
+
+            </div>
+
+            <div class="mb-4">
+
+                <h4>
+                    Can I resize JPG, JPEG and PNG images?
+                </h4>
+
+                <p>
+                    Yes, this tool supports JPG, JPEG and PNG image formats.
+                </p>
+
+            </div>
+
+            <div class="mt-4">
+
+    <h4>
+
+        Can I resize image to exactly 20KB for government forms?
+
+    </h4>
+
+    <p>
+
+        Yes. This tool is useful for passport applications,
+        job portals, exam forms and government uploads.
+
+    </p>
+
+</div>
+            <div class="mt-4">
+
+    <h4>
+
+        Does this image resizer work on mobile phones?
+
+    </h4>
+
+    <p>
+
+        Yes. PyToolsHub works on Android, iPhone and desktop browsers.
+
+    </p>
+
+</div>
+
+            <div>
+
+                <h4>
+                    Is image quality maintained?
+                </h4>
+
+                <p>
+                    Yes, our tool tries to maintain the best possible
+                    image quality after compression.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-
+from datetime import date, datetime
 from django.http import HttpResponse
 import fitz
 from django.shortcuts import render
@@ -90,6 +90,56 @@ def pdf_tools(request):
         context['final_size'] = round(final_size, 2)
 
     return render(request, 'pdf_tools.html', context)
+
+def resize_20kb(request):
+
+    context = {}
+
+    if request.method == 'POST' and request.FILES.get('image'):
+
+        image = request.FILES['image']
+
+        target_size_kb = 20
+
+        fs = FileSystemStorage()
+
+        filename = fs.save(image.name, image)
+
+        image_path = fs.path(filename)
+
+        img = Image.open(image_path)
+
+        compressed_name = '20kb_' + filename
+
+        compressed_path = os.path.join('media', compressed_name)
+
+        quality = 95
+
+        while quality > 10:
+
+            img.save(
+                compressed_path,
+                optimize=True,
+                quality=quality
+            )
+
+            current_size_kb = (
+                os.path.getsize(compressed_path) / 1024
+            )
+
+            if current_size_kb <= target_size_kb:
+                break
+
+            quality -= 5
+
+        context['compressed_image'] = compressed_name
+        context['final_size'] = round(current_size_kb, 2)
+
+    return render(
+        request,
+        'resize_image_to_20kb.html',
+        context
+    )
 
 def resize_50kb(request):
 
@@ -573,13 +623,47 @@ def calculator_tools(request):
     return render(request, 'calculator_tools.html')
 
 def age_calculator(request):
-    return render(request,"age_calculator.html")
+
+    age = None
+
+    if request.method == "POST":
+
+        dob = request.POST.get("dob")
+
+        if dob:
+
+            birth_date = datetime.strptime(
+                dob,
+                "%Y-%m-%d"
+            ).date()
+
+            today = date.today()
+
+            age = today.year - birth_date.year
+
+            if (
+                (today.month, today.day)
+                <
+                (birth_date.month, birth_date.day)
+            ):
+                age -= 1
+
+    return render(
+        request,
+        "age_calculator.html",
+        {
+            "age": age
+        }
+    )
 
 def percentage_calculator(request):
     return render(request,"percentage_calculator.html")
 
-def percentage_calculator(request):
-    return render(request, 'percentage_calculator.html')
-
 def bmi_calculator(request):
     return render(request, 'bmi_calculator.html')
+
+def cgpa_calculator(request):
+    return render(request,'cgpa_calculator.html')
+
+def emi_calculator(request):
+    return render(request,'emi_calculator.html')
