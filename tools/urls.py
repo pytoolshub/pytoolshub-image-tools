@@ -1,62 +1,238 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
 
-    path('', views.home, name='home'),
+    # ========================================================
+    # HOME
+    # ========================================================
 
-    path('image-tools/', views.image_tools, name='image_tools'),
+    path(
+        '',
+        views.home,
+        name='home'
+    ),
 
-    path('pdf-tools/', views.pdf_tools, name='pdf_tools'),
 
-    path('resize_image_to_20kb/',views.resize_20kb,name='resize_image_to_20kb'),
+    # ========================================================
+    # IMAGE TOOLS
+    # ========================================================
 
-    path('resize-image-to-50kb/', views.resize_50kb, name='resize_50kb'),
+    path(
+        'image-tools/',
+        views.image_tools,
+        name='image_tools'
+    ),
 
-    path('resize-image-to-100kb/', views.resize_100kb, name='resize_100kb'),
+    path(
+        'resize-image-to-20kb/',
+        views.resize_20kb,
+        name='resize_image_to_20kb'
+    ),
 
-    path('passport-photo-maker/', views.passport_photo, name='passport_photo'),
+    path(
+        'resize-image-to-50kb/',
+        views.resize_50kb,
+        name='resize_image_to_50kb'
+    ),
 
-    path('signature-resize-tool/', views.signature_resize, name='signature_resize'),
+    path(
+        'resize-image-to-100kb/',
+        views.resize_100kb,
+        name='resize_image_to_100kb'
+    ),
 
-    path('robots.txt', views.robots_txt, name='robots_txt'),
+    path(
+        'passport-photo-maker/',
+        views.passport_photo,
+        name='passport_photo'
+    ),
 
-    path('contact/', views.contact, name='contact'),
+    path(
+        'signature-resize-tool/',
+        views.signature_resize,
+        name='signature_resize'
+    ),
 
-    path('about/', views.about, name='about'),
+    path(
+        'jpg-to-png/',
+        views.jpg_to_png,
+        name='jpg_to_png'
+    ),
 
-    path('privacy-policy/',views.privacy_policy, name='privacy_policy'),
+    path(
+        'png-to-jpg/',
+        views.png_to_jpg,
+        name='png_to_jpg'
+    ),
 
-    path('disclaimer/',views.disclaimer, name='disclaimer'),
+    path(
+        'crop-image-online/',
+        views.crop_image_online,
+        name='crop_image_online'
+    ),
 
-    path('terms-and-conditions/',views.terms_conditions,name='terms_conditions'),
 
-    path('jpg-to-png/', views.jpg_to_png, name='jpg_to_png'),
+    # ========================================================
+    # PDF TOOLS
+    # ========================================================
 
-    path('png-to-jpg/', views.png_to_jpg, name='png_to_jpg'),
+    path(
+        'pdf-tools/',
+        views.pdf_tools,
+        name='pdf_tools'
+    ),
 
-    path('jpg-to-pdf/', views.jpg_to_pdf, name='jpg_to_pdf'),
+    path(
+        'jpg-to-pdf/',
+        views.jpg_to_pdf,
+        name='jpg_to_pdf'
+    ),
 
-    path('pdf-to-jpg/', views.pdf_to_jpg, name='pdf_to_jpg'),
+    path(
+        'pdf-to-jpg/',
+        views.pdf_to_jpg,
+        name='pdf_to_jpg'
+    ),
 
-    path('merge-pdf/', views.merge_pdf, name='merge_pdf'),
+    path(
+        'merge-pdf/',
+        views.merge_pdf,
+        name='merge_pdf'
+    ),
 
-    path('split-pdf/', views.split_pdf, name='split_pdf'),
+    path(
+        'split-pdf/',
+        views.split_pdf,
+        name='split_pdf'
+    ),
 
-    path('crop-image-online/',views.crop_image_online,name='crop_image_online'),
+    path(
+        'compress-pdf/',
+        views.compress_pdf,
+        name='compress_pdf'
+    ),
 
-    path("compress-pdf/",views.compress_pdf,name="compress_pdf"),
 
-    path('calculator-tools/',views.calculator_tools,name='calculator_tools'),
+    # ========================================================
+    # CALCULATOR TOOLS
+    # ========================================================
 
-    path('age-calculator/',views.age_calculator,name='age_calculator'),
+    path(
+        'calculator-tools/',
+        views.calculator_tools,
+        name='calculator_tools'
+    ),
 
-    path('percentage-calculator/',views.percentage_calculator,name='percentage_calculator'),
+    path(
+        'age-calculator/',
+        views.age_calculator,
+        name='age_calculator'
+    ),
 
-    path('bmi-calculator/',views.bmi_calculator,name='bmi_calculator'),
+    path(
+        'percentage-calculator/',
+        views.percentage_calculator,
+        name='percentage_calculator'
+    ),
 
-    path('cgpa-calculator/', views.cgpa_calculator, name='cgpa_calculator'),
+    path(
+        'bmi-calculator/',
+        views.bmi_calculator,
+        name='bmi_calculator'
+    ),
 
-    path('emi-calculator/', views.emi_calculator, name='emi_calculator'),
+    path(
+        'cgpa-calculator/',
+        views.cgpa_calculator,
+        name='cgpa_calculator'
+    ),
+
+    path(
+        'emi-calculator/',
+        views.emi_calculator,
+        name='emi_calculator'
+    ),
+
+
+    # ========================================================
+    # WEBSITE PAGES
+    # ========================================================
+
+    path(
+        'about/',
+        views.about,
+        name='about'
+    ),
+
+    path(
+        'contact/',
+        views.contact,
+        name='contact'
+    ),
+
+    path(
+        'privacy-policy/',
+        views.privacy_policy,
+        name='privacy_policy'
+    ),
+
+    path(
+        'disclaimer/',
+        views.disclaimer,
+        name='disclaimer'
+    ),
+
+    path(
+        'terms-and-conditions/',
+        views.terms_conditions,
+        name='terms_conditions'
+    ),
+
+
+    # ========================================================
+    # FILE HANDLING
+    # ========================================================
+
+    path(
+        'media/<str:filename>/',
+        views.media_file,
+        name='media_file'
+    ),
+
+    path(
+        'download/<str:filename>/',
+        views.download_file,
+        name='download_file'
+    ),
+
+
+    # ========================================================
+    # SEO
+    # ========================================================
+
+    path(
+        'robots.txt',
+        views.robots_txt,
+        name='robots_txt'
+    ),
+
+
+    # =========================
+    # FILE HANDLING
+    # =========================
+
+    path(
+        'media/<str:filename>/',
+        views.media_file,
+        name='media_file'
+    ),
+
+    path(
+        'download/<str:filename>/',
+        views.download_file,
+        name='download_file'
+    ),
 
 ]

@@ -1,21 +1,6 @@
-"""config URL Configuration
+"""config URL Configuration"""
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.http import HttpResponse
-from django.views.generic import TemplateView
-
 from django.contrib import admin
 from django.urls import path, include
 
@@ -25,21 +10,34 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from tools.sitemaps import StaticViewSitemap
 
-from django.contrib.staticfiles.views import serve
-from django.views.generic.base import RedirectView
 
+# ============================================================
+# SITEMAP
+# ============================================================
 
 sitemaps = {
     'static': StaticViewSitemap,
 }
 
+
+# ============================================================
+# ADS.TXT
+# ============================================================
+
 def ads_txt(request):
+
     return HttpResponse(
         "google.com, pub-1066940079053600, DIRECT, f08c47fec0942fa0",
         content_type="text/plain",
     )
 
+
+# ============================================================
+# BING VERIFICATION
+# ============================================================
+
 def bing_verify(request):
+
     return HttpResponse(
         """<?xml version="1.0"?>
 <users>
@@ -49,31 +47,56 @@ def bing_verify(request):
     )
 
 
+# ============================================================
+# URL PATTERNS
+# ============================================================
+
 urlpatterns = [
 
-    path('admin/', admin.site.urls),
+    # Django Admin
+    path(
+        'admin/',
+        admin.site.urls
+    ),
 
-    path('', include('tools.urls')),
+    # Main application
+    path(
+        '',
+        include('tools.urls')
+    ),
 
-    path('sitemap.xml',sitemap,{'sitemaps': sitemaps},name='django.contrib.sitemaps.views.sitemap'),
+    # Sitemap
+    path(
+        'sitemap.xml',
+        sitemap,
+        {
+            'sitemaps': sitemaps
+        },
+        name='django.contrib.sitemaps.views.sitemap'
+    ),
 
-    path("ads.txt",ads_txt),
+    # AdSense ads.txt
+    path(
+        'ads.txt',
+        ads_txt
+    ),
 
-    path("BingSiteAuth.xml", bing_verify),
+    # Bing verification
+    path(
+        'BingSiteAuth.xml',
+        bing_verify
+    ),
+
 ]
 
 
-
-
-
-
-
-
-
-
-
+# ============================================================
+# DEVELOPMENT MEDIA SERVING
+# ============================================================
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
 
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )
