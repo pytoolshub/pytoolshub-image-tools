@@ -63,105 +63,206 @@ def save_pil_image(image, filename, image_format="JPEG", **kwargs):
 
 def compress_image_to_target(image_path, target_size_kb):
     """
-    Compress an image to approximately <= target_size_kb.
+    Compress an image to <= target_size_kb safely.
 
-    Output format is JPEG.
+    Designed for low-memory hosting environments such as Render.
+    Large images are resized before compression.
     """
 
     storage = get_storage()
 
-    img = Image.open(image_path)
-
-    if img.mode != "RGB":
-
-        if img.mode in ("RGBA", "LA"):
-
-            background = Image.new(
-                "RGB",
-                img.size,
-                "white"
-            )
-
-            background.paste(
-                img,
-                mask=img.getchannel("A")
-            )
-
-            img = background
-
-        else:
-            img = img.convert("RGB")
-
     target_bytes = target_size_kb * 1024
 
-    working_img = img.copy()
+    img = None
 
-    quality = 95
+    try:
+        # -----------------------------------------
+        # OPEN IMAGE
+        # -----------------------------------------
 
-    while True:
+        img = Image.open(image_path)
 
-        buffer = BytesIO()
+        # -----------------------------------------
+        # MEMORY PROTECTION
+        # -----------------------------------------
 
-        working_img.save(
-            buffer,
-            format="JPEG",
-            quality=quality,
-            optimize=True
-        )
+        MAX_DIMENSION = 2000
 
-        current_size = len(
-            buffer.getvalue()
-        )
+        width, height = img.size
 
-        if current_size <= target_bytes:
-            break
+        if width > MAX_DIMENSION or height > MAX_DIMENSION:
 
-        if quality > 20:
+            scale = min(
+                MAX_DIMENSION / width,
+                MAX_DIMENSION / height
+            )
+
+            new_width = max(
+                1,
+                int(width * scale)
+            )
+
+            new_height = max(
+                1,
+                int(height * scale)
+            )
+
+            resized = img.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+
+            img.close()
+
+            img = resized
+
+        # -----------------------------------------
+        # CONVERT TO RGB
+        # -----------------------------------------
+
+        if img.mode != "RGB":
+
+            if img.mode in ("RGBA", "LA"):
+
+                background = Image.new(
+                    "RGB",
+                    img.size,
+                    "white"
+                )
+
+                alpha = img.getchannel("A")
+
+                background.paste(
+                    img,
+                    mask=alpha
+                )
+
+                img.close()
+
+                img = background
+
+            else:
+
+                converted = img.convert("RGB")
+
+                img.close()
+
+                img = converted
+
+        # -----------------------------------------
+        # COMPRESSION
+        # -----------------------------------------
+
+        best_data = None
+
+        quality = 85
+
+        while quality >= 25:
+
+            buffer = BytesIO()
+
+            img.save(
+                buffer,
+                format="JPEG",
+                quality=quality,
+                optimize=False
+            )
+
+            data = buffer.getvalue()
+
+            buffer.close()
+
+            best_data = data
+
+            if len(data) <= target_bytes:
+                break
 
             quality -= 5
-            continue
 
-        new_width = int(
-            working_img.width * 0.90
-        )
+        # -----------------------------------------
+        # REDUCE DIMENSIONS IF STILL TOO LARGE
+        # -----------------------------------------
 
-        new_height = int(
-            working_img.height * 0.90
-        )
-
-        if (
-            new_width < 50
-            or new_height < 50
+        while (
+            best_data is not None
+            and len(best_data) > target_bytes
+            and img.width > 300
+            and img.height > 300
         ):
-            break
 
-        working_img = working_img.resize(
-            (
-                new_width,
-                new_height
-            ),
-            Image.Resampling.LANCZOS
+            new_width = max(
+                300,
+                int(img.width * 0.85)
+            )
+
+            new_height = max(
+                300,
+                int(img.height * 0.85)
+            )
+
+            resized = img.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+
+            img.close()
+
+            img = resized
+
+            buffer = BytesIO()
+
+            img.save(
+                buffer,
+                format="JPEG",
+                quality=70,
+                optimize=False
+            )
+
+            best_data = buffer.getvalue()
+
+            buffer.close()
+
+        # -----------------------------------------
+        # SAFETY CHECK
+        # -----------------------------------------
+
+        if best_data is None:
+            raise ValueError(
+                "Unable to compress image."
+            )
+
+        # -----------------------------------------
+        # SAVE IMAGE
+        # -----------------------------------------
+
+        output_name = unique_filename(
+            f"compressed_{target_size_kb}kb",
+            ".jpg"
         )
 
-        quality = 80
+        saved_name = storage.save(
+            output_name,
+            ContentFile(best_data)
+        )
 
-    output_name = unique_filename(
-        f"compressed_{target_size_kb}kb",
-        ".jpg"
-    )
+        final_size = (
+            storage.size(saved_name) / 1024
+        )
 
-    buffer.seek(0)
+        return (
+            saved_name,
+            round(final_size, 2)
+        )
 
-    saved_name = storage.save(
-        output_name,
-        ContentFile(buffer.getvalue())
-    )
+    finally:
 
-    final_size = (
-        storage.size(saved_name) / 1024
-    )
+        if img is not None:
 
-    return saved_name, round(final_size, 2)
+            try:
+                img.close()
+
+            except Exception:
+                pass
 
 
 def save_pdf_from_path(source_doc, output_filename):
