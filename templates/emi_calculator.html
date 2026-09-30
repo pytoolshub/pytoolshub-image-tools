@@ -5,7 +5,7 @@ EMI Calculator - PyToolsHub
 {% endblock %}
 
 {% block description %}
-Free online EMI Calculator. Calculate monthly loan EMI instantly.
+Free online EMI Calculator. Calculate monthly loan EMI, total interest, and total payment instantly.
 {% endblock %}
 
 {% block content %}
@@ -18,27 +18,38 @@ Free online EMI Calculator. Calculate monthly loan EMI instantly.
 
     <div class="card shadow p-4">
 
-        <label>Loan Amount (₹)</label>
+        <label for="loan">
+            Loan Amount (₹)
+        </label>
 
         <input type="number"
                id="loan"
-               class="form-control">
+               class="form-control"
+               placeholder="Enter loan amount"
+               min="0"
+               step="0.01">
 
-        <label class="mt-3">
-            Interest Rate (%)
+        <label for="rate" class="mt-3">
+            Interest Rate (% per year)
         </label>
 
         <input type="number"
                id="rate"
-               class="form-control">
+               class="form-control"
+               placeholder="Enter annual interest rate"
+               min="0"
+               step="0.01">
 
-        <label class="mt-3">
+        <label for="years" class="mt-3">
             Loan Tenure (Years)
         </label>
 
         <input type="number"
                id="years"
-               class="form-control">
+               class="form-control"
+               placeholder="Enter loan tenure"
+               min="0"
+               step="0.01">
 
         <button class="btn btn-success mt-3"
                 onclick="calculateEMI()">
@@ -47,47 +58,162 @@ Free online EMI Calculator. Calculate monthly loan EMI instantly.
 
         </button>
 
-        <div class="mt-4">
-            <h4 id="result"></h4>
+        <div id="error"
+             class="alert alert-danger mt-3"
+             style="display: none;">
+        </div>
+
+        <div id="result"
+             class="mt-4"
+             style="display: none;">
+
+            <h4>EMI Result</h4>
+
+            <p>
+                <strong>Monthly EMI:</strong>
+                ₹<span id="monthlyEMI">0.00</span>
+            </p>
+
+            <p>
+                <strong>Total Interest:</strong>
+                ₹<span id="totalInterest">0.00</span>
+            </p>
+
+            <p>
+                <strong>Total Payment:</strong>
+                ₹<span id="totalPayment">0.00</span>
+            </p>
+
         </div>
 
     </div>
 
 </div>
 
+
 <script>
 
 function calculateEMI() {
 
-    let P =
-        parseFloat(
-            document.getElementById("loan").value
-        );
+    // Get input values
+    const P = parseFloat(
+        document.getElementById("loan").value
+    );
 
-    let annualRate =
-        parseFloat(
-            document.getElementById("rate").value
-        );
+    const annualRate = parseFloat(
+        document.getElementById("rate").value
+    );
 
-    let years =
-        parseFloat(
-            document.getElementById("years").value
-        );
+    const years = parseFloat(
+        document.getElementById("years").value
+    );
 
-    let r = annualRate / 12 / 100;
 
-    let n = years * 12;
+    // Elements
+    const errorBox = document.getElementById("error");
+    const resultBox = document.getElementById("result");
 
-    let emi =
-        (P * r * Math.pow(1 + r, n))
-        /
-        (Math.pow(1 + r, n) - 1);
 
-    document.getElementById("result")
-        .innerHTML =
-        "Monthly EMI: ₹" +
+    // Hide previous messages
+    errorBox.style.display = "none";
+    resultBox.style.display = "none";
+
+
+    // Validation
+    if (
+        isNaN(P) ||
+        isNaN(annualRate) ||
+        isNaN(years)
+    ) {
+
+        errorBox.innerHTML =
+            "Please enter all required values.";
+
+        errorBox.style.display = "block";
+
+        return;
+    }
+
+
+    if (P <= 0) {
+
+        errorBox.innerHTML =
+            "Loan amount must be greater than 0.";
+
+        errorBox.style.display = "block";
+
+        return;
+    }
+
+
+    if (annualRate < 0) {
+
+        errorBox.innerHTML =
+            "Interest rate cannot be negative.";
+
+        errorBox.style.display = "block";
+
+        return;
+    }
+
+
+    if (years <= 0) {
+
+        errorBox.innerHTML =
+            "Loan tenure must be greater than 0.";
+
+        errorBox.style.display = "block";
+
+        return;
+    }
+
+
+    // Convert years into months
+    const n = years * 12;
+
+
+    // Convert annual interest rate into monthly rate
+    const r = annualRate / 12 / 100;
+
+
+    let emi;
+
+
+    // Special case: 0% interest
+    if (r === 0) {
+
+        emi = P / n;
+
+    } else {
+
+        // Standard EMI formula
+        emi =
+            (P * r * Math.pow(1 + r, n))
+            /
+            (Math.pow(1 + r, n) - 1);
+    }
+
+
+    // Calculate total payment
+    const totalPayment = emi * n;
+
+
+    // Calculate total interest
+    const totalInterest = totalPayment - P;
+
+
+    // Display result
+    document.getElementById("monthlyEMI").innerText =
         emi.toFixed(2);
 
+    document.getElementById("totalInterest").innerText =
+        totalInterest.toFixed(2);
+
+    document.getElementById("totalPayment").innerText =
+        totalPayment.toFixed(2);
+
+
+    resultBox.style.display = "block";
 }
 
 </script>
