@@ -1,87 +1,283 @@
 {% extends 'base.html' %}
 
 {% block title %}
-JPG to PNG Converter - PyToolsHub
+JPG to PNG Converter Online Free - PyToolsHub
 {% endblock %}
 
 {% block description %}
-Free online JPG to PNG converter tool.
+Convert JPG and JPEG images to PNG online free. Fast JPG to PNG converter with instant preview and download.
 {% endblock %}
 
 {% block content %}
+
+<div class="container py-5">
+
+    <!-- TOOL -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5">
+            JPG to PNG Converter
+        </h1>
+
+        <p class="lead mt-3">
+            Convert JPG and JPEG images to PNG online for free.
+        </p>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <div class="card main-card shadow-lg p-5">
+
+                <form method="POST"
+                      enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Upload JPG Image
+                        </label>
+
+                        <input type="file"
+                               name="image"
+                               class="form-control form-control-lg"
+                               accept=".jpg,.jpeg"
+                               required>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-success btn-lg w-100">
+
+                        Convert to PNG
+
+                    </button>
+
+                </form>
+
+
+                {% if converted_image %}
+
+                <div class="alert alert-success mt-4 text-center">
+
+                    <h4>
+                        Image Converted Successfully!
+                    </h4>
+
+                    <img src="/media/{{ converted_image }}"
+                         class="img-fluid rounded shadow mt-3"
+                         style="max-height:300px;">
+
+                    <br><br>
+
+                    <a href="/media/{{ converted_image }}"
+                       download
+                       class="btn btn-success">
+
+                        Download PNG
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SEO CONTENT
+========================= -->
 
 <section class="py-5">
 
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
 
-            <div class="col-lg-6">
+            <h2 class="fw-bold mb-4">
+                JPG to PNG Converter Online Free
+            </h2>
 
-                <div class="card shadow-lg p-5 border-0 rounded-4">
+            <p class="lead">
 
-                    <h1 class="text-center fw-bold mb-4">
+                PyToolsHub provides a free online JPG to PNG converter
+                that allows you to convert JPG and JPEG images into PNG
+                format quickly.
 
-                        JPG to PNG Converter
+            </p>
 
-                    </h1>
+            <p>
 
-                    <form method="POST"
-                          enctype="multipart/form-data">
+                Upload your JPG image, click the convert button and
+                download the converted PNG image instantly.
 
-                        {% csrf_token %}
+            </p>
 
-                        <div class="mb-4">
+            <p>
 
-                            <label class="form-label fw-bold">
+                The tool works directly from your web browser and is
+                suitable for common image conversion requirements.
 
-                                Upload JPG Image
+            </p>
 
-                            </label>
+        </div>
 
-                            <input type="file"
-                                   name="image"
-                                   class="form-control"
-                                   accept=".jpg,.jpeg"
-                                   required>
 
-                        </div>
+        <!-- RELATED TOOLS -->
 
-                        <button type="submit"
-                                class="btn btn-success w-100 btn-lg">
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
 
-                            Convert to PNG
+            <h2 class="fw-bold mb-4">
+                Related Image Tools
+            </h2>
 
-                        </button>
+            <div class="row g-3">
 
-                    </form>
+                <div class="col-md-6">
 
-                    {% if converted_image %}
+                    <a href="{% url 'png_to_jpg' %}"
+                       class="btn btn-outline-success w-100">
 
-                    <div class="alert alert-success mt-4 text-center">
+                        PNG to JPG Converter
 
-                        <h4>
-                            Image Converted Successfully
-                        </h4>
-
-                        <img src="/media/{{ converted_image }}"
-                             class="img-fluid rounded shadow mt-3">
-
-                        <br><br>
-
-                        <a href="/media/{{ converted_image }}"
-                           download
-                           class="btn btn-success">
-
-                            Download PNG
-
-                        </a>
-
-                    </div>
-
-                    {% endif %}
+                    </a>
 
                 </div>
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'resize_image_to_20kb' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Resize Image to 20KB
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'resize_image_to_50kb' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Resize Image to 50KB
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'resize_image_to_100kb' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Resize Image to 100KB
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'crop_image_online' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Crop Image Online
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'passport_photo' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Passport Photo Maker
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FAQ -->
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Frequently Asked Questions
+            </h2>
+
+            <div class="mb-4">
+
+                <h4>
+                    How can I convert JPG to PNG?
+                </h4>
+
+                <p>
+                    Upload your JPG or JPEG image, click
+                    "Convert to PNG", and download the converted
+                    PNG image.
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Is the JPG to PNG converter free?
+                </h4>
+
+                <p>
+                    Yes. PyToolsHub provides this JPG to PNG
+                    conversion tool free online.
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Can I convert JPEG to PNG?
+                </h4>
+
+                <p>
+                    Yes. The tool accepts both JPG and JPEG
+                    image formats.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Can I use this tool on mobile?
+                </h4>
+
+                <p>
+                    Yes. The converter can be used from
+                    mobile phones, tablets and desktop browsers.
+                </p>
 
             </div>
 
