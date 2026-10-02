@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Merge PDF Tool
+Merge PDF Files Online Free - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Merge two PDF files online free with PyToolsHub. Combine PDF documents into one PDF and download the merged file easily.
 {% endblock %}
 
 {% block content %}
@@ -10,51 +14,69 @@ Merge PDF Tool
 
     <div class="container">
 
+        <div class="text-center mb-5">
+
+            <h1 class="fw-bold display-5">
+                Merge PDF Files
+            </h1>
+
+            <p class="lead mt-3">
+                Combine two PDF files into one PDF online for free.
+            </p>
+
+        </div>
+
+
         <div class="row justify-content-center">
 
             <div class="col-lg-6">
 
                 <div class="card shadow p-5 border-0 rounded-4">
 
-                    <h1 class="text-center mb-4">
-
-                        Merge PDF Tool
-
-                    </h1>
-
                     <form method="POST"
                           enctype="multipart/form-data">
 
                         {% csrf_token %}
 
-                        <label class="fw-bold mb-2">
-                            Upload First PDF
-                        </label>
+                        <div class="mb-4">
 
-                        <input type="file"
-                               name="pdf1"
-                               class="form-control mb-4"
-                               accept=".pdf"
-                               required>
+                            <label class="fw-bold mb-2">
+                                Upload First PDF
+                            </label>
 
-                        <label class="fw-bold mb-2">
-                            Upload Second PDF
-                        </label>
+                            <input type="file"
+                                   name="pdf1"
+                                   class="form-control form-control-lg"
+                                   accept=".pdf"
+                                   required>
 
-                        <input type="file"
-                               name="pdf2"
-                               class="form-control mb-4"
-                               accept=".pdf"
-                               required>
+                        </div>
+
+
+                        <div class="mb-4">
+
+                            <label class="fw-bold mb-2">
+                                Upload Second PDF
+                            </label>
+
+                            <input type="file"
+                                   name="pdf2"
+                                   class="form-control form-control-lg"
+                                   accept=".pdf"
+                                   required>
+
+                        </div>
+
 
                         <button type="submit"
-                                class="btn btn-success w-100">
+                                class="btn btn-success w-100 btn-lg">
 
                             Merge PDFs
 
                         </button>
 
                     </form>
+
 
                     {% if merged_pdf %}
 
@@ -64,11 +86,15 @@ Merge PDF Tool
                             PDFs Merged Successfully
                         </h4>
 
+                        <p class="mt-2">
+                            Your merged PDF is ready to download.
+                        </p>
+
                         <a href="/media/{{ merged_pdf }}"
                            download
-                           class="btn btn-success mt-3">
+                           class="btn btn-success mt-2">
 
-                            Download PDF
+                            Download Merged PDF
 
                         </a>
 
@@ -77,6 +103,226 @@ Merge PDF Tool
                     {% endif %}
 
                 </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SEO CONTENT
+========================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
+
+            <h2 class="fw-bold mb-4">
+                Merge PDF Files Online Free
+            </h2>
+
+            <p class="lead">
+
+                PyToolsHub provides a free online PDF merger
+                for combining PDF documents into a single file.
+
+            </p>
+
+            <p>
+
+                Upload two PDF files, click the Merge PDFs button,
+                and download the resulting PDF file.
+
+            </p>
+
+            <h3 class="fw-bold mt-4">
+                How to Merge PDF Files
+            </h3>
+
+            <ol>
+
+                <li class="mb-2">
+                    Upload the first PDF file.
+                </li>
+
+                <li class="mb-2">
+                    Upload the second PDF file.
+                </li>
+
+                <li class="mb-2">
+                    Click <strong>Merge PDFs</strong>.
+                </li>
+
+                <li>
+                    Download the merged PDF file.
+                </li>
+
+            </ol>
+
+            <h3 class="fw-bold mt-4">
+                When Can You Use a PDF Merger?
+            </h3>
+
+            <p>
+
+                A PDF merger can be useful when you need to combine
+                multiple documents into one file, such as application
+                documents, reports, forms or other PDF files.
+
+            </p>
+
+        </div>
+
+
+        <!-- RELATED TOOLS -->
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Related PDF Tools
+            </h2>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <a href="/jpg-to-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        JPG to PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/pdf-to-jpg/"
+                       class="btn btn-outline-success w-100">
+
+                        PDF to JPG
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/split-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        Split PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/compress-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        Compress PDF
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    How can I merge PDF files online?
+                </h4>
+
+                <p>
+
+                    Upload two PDF files and click the
+                    Merge PDFs button. You can then download
+                    the combined PDF.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Is this PDF merger free?
+                </h4>
+
+                <p>
+
+                    Yes. PyToolsHub provides this PDF merging
+                    tool free online.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    How many PDF files can I merge?
+                </h4>
+
+                <p>
+
+                    The current tool is designed to merge
+                    two PDF files at a time.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Can I compress the merged PDF?
+                </h4>
+
+                <p>
+
+                    Yes. After merging your files, you can use
+                    our
+                    <a href="/compress-pdf/">
+                        Compress PDF
+                    </a>
+                    tool to reduce the PDF file size.
+
+                </p>
 
             </div>
 

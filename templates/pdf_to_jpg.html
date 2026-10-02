@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-PDF to JPG Converter
+PDF to JPG Converter Online Free - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Convert PDF pages to JPG images online free. Easily convert PDF files to JPG and download the converted image with PyToolsHub.
 {% endblock %}
 
 {% block content %}
@@ -10,37 +14,53 @@ PDF to JPG Converter
 
     <div class="container">
 
+        <div class="text-center mb-5">
+
+            <h1 class="fw-bold display-5">
+                PDF to JPG Converter
+            </h1>
+
+            <p class="lead mt-3">
+                Convert PDF files to JPG images online free.
+            </p>
+
+        </div>
+
+
         <div class="row justify-content-center">
 
             <div class="col-lg-6">
 
                 <div class="card shadow p-5 border-0 rounded-4">
 
-                    <h1 class="text-center mb-4">
-
-                        PDF to JPG Converter
-
-                    </h1>
-
                     <form method="POST"
                           enctype="multipart/form-data">
 
                         {% csrf_token %}
 
-                        <input type="file"
-                               name="pdf"
-                               class="form-control mb-4"
-                               accept=".pdf"
-                               required>
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Upload PDF
+                            </label>
+
+                            <input type="file"
+                                   name="pdf"
+                                   class="form-control form-control-lg"
+                                   accept=".pdf"
+                                   required>
+
+                        </div>
 
                         <button type="submit"
-                                class="btn btn-success w-100">
+                                class="btn btn-success w-100 btn-lg">
 
                             Convert to JPG
 
                         </button>
 
                     </form>
+
 
                     {% if converted_image %}
 
@@ -68,6 +88,242 @@ PDF to JPG Converter
                     {% endif %}
 
                 </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SEO CONTENT
+========================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
+
+            <h2 class="fw-bold mb-4">
+                Convert PDF to JPG Online Free
+            </h2>
+
+            <p class="lead">
+
+                PyToolsHub provides a free online PDF to JPG converter
+                that allows you to convert PDF pages into JPG images
+                quickly and easily.
+
+            </p>
+
+            <p>
+
+                Upload your PDF file and use the converter to create
+                a JPG image from the PDF. The converted image can then
+                be downloaded directly to your device.
+
+            </p>
+
+            <p>
+
+                This tool can be useful when you need to share a PDF page
+                as an image, upload a document page to a website,
+                or use a PDF page as an image.
+
+            </p>
+
+            <h3 class="fw-bold mt-4">
+                How to Convert PDF to JPG
+            </h3>
+
+            <ol>
+
+                <li class="mb-2">
+                    Upload your PDF file.
+                </li>
+
+                <li class="mb-2">
+                    Click the <strong>Convert to JPG</strong> button.
+                </li>
+
+                <li class="mb-2">
+                    Wait for the PDF page to be converted.
+                </li>
+
+                <li class="mb-2">
+                    Preview the converted JPG image.
+                </li>
+
+                <li>
+                    Click <strong>Download JPG</strong> to save the image.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+        <!-- RELATED TOOLS -->
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Related PDF & Image Tools
+            </h2>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <a href="/jpg-to-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        JPG to PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/merge-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        Merge PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/split-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        Split PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/compress-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        Compress PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/jpg-to-png/"
+                       class="btn btn-outline-success w-100">
+
+                        JPG to PNG
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/png-to-jpg/"
+                       class="btn btn-outline-success w-100">
+
+                        PNG to JPG
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    How can I convert PDF to JPG online?
+                </h4>
+
+                <p>
+                    Upload your PDF file, click Convert to JPG,
+                    and download the converted JPG image.
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Is the PDF to JPG converter free?
+                </h4>
+
+                <p>
+                    Yes. PyToolsHub provides this PDF to JPG
+                    conversion tool free online.
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Can I download the converted JPG?
+                </h4>
+
+                <p>
+                    Yes. After conversion, you can preview the JPG
+                    and download it directly.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Can I convert JPG back to PDF?
+                </h4>
+
+                <p>
+
+                    Yes. You can use our
+                    <a href="/jpg-to-pdf/">
+                        JPG to PDF Converter
+                    </a>
+                    to convert an image into a PDF file.
+
+                </p>
 
             </div>
 

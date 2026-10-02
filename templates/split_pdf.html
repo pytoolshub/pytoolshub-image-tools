@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Split PDF Tool
+Split PDF Online Free - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Split PDF files online free with PyToolsHub. Upload a PDF and extract the first page as a separate PDF file for easy download.
 {% endblock %}
 
 {% block content %}
@@ -10,41 +14,54 @@ Split PDF Tool
 
     <div class="container">
 
+        <div class="text-center mb-5">
+
+            <h1 class="fw-bold display-5">
+                Split PDF Tool
+            </h1>
+
+            <p class="lead mt-3">
+                Extract the first page from a PDF online for free.
+            </p>
+
+        </div>
+
+
         <div class="row justify-content-center">
 
             <div class="col-lg-6">
 
                 <div class="card shadow p-5 border-0 rounded-4">
 
-                    <h1 class="text-center mb-4">
-
-                        Split PDF Tool
-
-                    </h1>
-
                     <form method="POST"
                           enctype="multipart/form-data">
 
                         {% csrf_token %}
 
-                        <label class="fw-bold mb-2">
-                            Upload PDF
-                        </label>
+                        <div class="mb-4">
 
-                        <input type="file"
-                               name="pdf"
-                               class="form-control mb-4"
-                               accept=".pdf"
-                               required>
+                            <label class="fw-bold mb-2">
+                                Upload PDF
+                            </label>
+
+                            <input type="file"
+                                   name="pdf"
+                                   class="form-control form-control-lg"
+                                   accept=".pdf"
+                                   required>
+
+                        </div>
+
 
                         <button type="submit"
-                                class="btn btn-success w-100">
+                                class="btn btn-success w-100 btn-lg">
 
                             Split PDF
 
                         </button>
 
                     </form>
+
 
                     {% if split_pdf_file %}
 
@@ -54,9 +71,13 @@ Split PDF Tool
                             PDF Split Successfully
                         </h4>
 
+                        <p class="mt-2">
+                            The first page has been extracted successfully.
+                        </p>
+
                         <a href="/media/{{ split_pdf_file }}"
                            download
-                           class="btn btn-success mt-3">
+                           class="btn btn-success mt-2">
 
                             Download First Page
 
@@ -67,6 +88,230 @@ Split PDF Tool
                     {% endif %}
 
                 </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SEO CONTENT
+========================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
+
+            <h2 class="fw-bold mb-4">
+                Split PDF Online Free
+            </h2>
+
+            <p class="lead">
+
+                PyToolsHub provides a free online PDF splitting tool
+                that allows you to extract the first page of a PDF
+                into a separate PDF file.
+
+            </p>
+
+            <p>
+
+                Upload your PDF document and click the Split PDF button.
+                The tool processes the document and provides the extracted
+                first page for download.
+
+            </p>
+
+
+            <h3 class="fw-bold mt-4">
+                How to Split a PDF
+            </h3>
+
+            <ol>
+
+                <li class="mb-2">
+                    Upload your PDF file.
+                </li>
+
+                <li class="mb-2">
+                    Click <strong>Split PDF</strong>.
+                </li>
+
+                <li class="mb-2">
+                    The first page is extracted from the PDF.
+                </li>
+
+                <li>
+                    Click <strong>Download First Page</strong>
+                    to save the extracted PDF.
+                </li>
+
+            </ol>
+
+
+            <h3 class="fw-bold mt-4">
+                Why Extract a PDF Page?
+            </h3>
+
+            <p>
+
+                Extracting a page can be useful when you only need
+                a particular document page separately, such as a
+                cover page, application page, report page or other
+                individual PDF content.
+
+            </p>
+
+        </div>
+
+
+        <!-- RELATED TOOLS -->
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Related PDF Tools
+            </h2>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <a href="/merge-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        Merge PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/compress-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        Compress PDF
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/pdf-to-jpg/"
+                       class="btn btn-outline-success w-100">
+
+                        PDF to JPG
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <a href="/jpg-to-pdf/"
+                       class="btn btn-outline-success w-100">
+
+                        JPG to PDF
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    How can I split a PDF online?
+                </h4>
+
+                <p>
+
+                    Upload your PDF and click the Split PDF button.
+                    The current tool extracts the first page into
+                    a separate PDF file.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Is this PDF splitting tool free?
+                </h4>
+
+                <p>
+
+                    Yes. PyToolsHub provides this PDF tool free online.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Can I download the extracted page?
+                </h4>
+
+                <p>
+
+                    Yes. After processing, click Download First Page
+                    to save the extracted PDF.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Can I merge PDF files?
+                </h4>
+
+                <p>
+
+                    Yes. You can use our
+                    <a href="/merge-pdf/">
+                        Merge PDF
+                    </a>
+                    tool to combine PDF files.
+
+                </p>
 
             </div>
 

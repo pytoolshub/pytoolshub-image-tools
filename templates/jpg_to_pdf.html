@@ -1,68 +1,304 @@
 {% extends 'base.html' %}
 
 {% block title %}
-JPG to PDF Converter
+JPG to PDF Converter Online Free - PyToolsHub
+{% endblock %}
+
+{% block description %}
+Convert JPG and JPEG images to PDF online free. Create a PDF from your image and download it instantly.
 {% endblock %}
 
 {% block content %}
+
+<div class="container py-5">
+
+    <!-- =========================
+         TOOL
+    ========================= -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5">
+            JPG to PDF Converter
+        </h1>
+
+        <p class="lead mt-3">
+            Convert JPG and JPEG images to PDF online for free.
+        </p>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <div class="card main-card shadow-lg p-5">
+
+                <form method="POST"
+                      enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Upload JPG Image
+                        </label>
+
+                        <input type="file"
+                               name="image"
+                               class="form-control form-control-lg"
+                               accept=".jpg,.jpeg"
+                               required>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn btn-success btn-lg w-100">
+
+                        Convert to PDF
+
+                    </button>
+
+                </form>
+
+
+                {% if pdf_file %}
+
+                <div class="alert alert-success mt-4 text-center">
+
+                    <h4>
+                        PDF Created Successfully!
+                    </h4>
+
+                    <p class="mt-2">
+                        Your JPG image has been converted to PDF.
+                    </p>
+
+                    <a href="/media/{{ pdf_file }}"
+                       download
+                       class="btn btn-success mt-3">
+
+                        Download PDF
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SEO CONTENT
+========================= -->
 
 <section class="py-5">
 
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
 
-            <div class="col-lg-6">
+            <h2 class="fw-bold mb-4">
+                JPG to PDF Converter Online Free
+            </h2>
 
-                <div class="card shadow p-5 border-0 rounded-4">
+            <p class="lead">
 
-                    <h1 class="text-center mb-4">
+                PyToolsHub provides a free online JPG to PDF converter
+                that lets you convert a JPG or JPEG image into a PDF
+                document quickly.
 
-                        JPG to PDF Converter
+            </p>
 
-                    </h1>
+            <p>
 
-                    <form method="POST"
-                          enctype="multipart/form-data">
+                Upload your image and click the Convert to PDF button.
+                Once the conversion is complete, you can download
+                your PDF file directly.
 
-                        {% csrf_token %}
+            </p>
 
-                        <input type="file"
-                               name="image"
-                               class="form-control mb-4"
-                               accept=".jpg,.jpeg"
-                               required>
+            <p>
 
-                        <button type="submit"
-                                class="btn btn-success w-100">
+                This tool can be useful when you need to submit an
+                image as a PDF document for applications, forms,
+                documents and other online requirements.
 
-                            Convert to PDF
+            </p>
 
-                        </button>
+        </div>
 
-                    </form>
 
-                    {% if pdf_file %}
+        <!-- =========================
+             RELATED TOOLS
+        ========================= -->
 
-                    <div class="alert alert-success mt-4 text-center">
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
 
-                        <h4>
-                            PDF Created Successfully
-                        </h4>
+            <h2 class="fw-bold mb-4">
+                Related PDF Tools
+            </h2>
 
-                        <a href="/media/{{ pdf_file }}"
-                           download
-                           class="btn btn-success mt-3">
+            <div class="row g-3">
 
-                            Download PDF
+                <div class="col-md-6">
 
-                        </a>
+                    <a href="{% url 'pdf_to_jpg' %}"
+                       class="btn btn-outline-success w-100">
 
-                    </div>
+                        PDF to JPG Converter
 
-                    {% endif %}
+                    </a>
 
                 </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'merge_pdf' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Merge PDF
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'split_pdf' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Split PDF
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'compress_pdf' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Compress PDF
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'jpg_to_png' %}"
+                       class="btn btn-outline-success w-100">
+
+                        JPG to PNG Converter
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'png_to_jpg' %}"
+                       class="btn btn-outline-success w-100">
+
+                        PNG to JPG Converter
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             FAQ
+        ========================= -->
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    How can I convert JPG to PDF?
+                </h4>
+
+                <p>
+
+                    Upload your JPG or JPEG image, click
+                    "Convert to PDF", and download the generated
+                    PDF file.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Is the JPG to PDF converter free?
+                </h4>
+
+                <p>
+
+                    Yes. PyToolsHub provides this JPG to PDF
+                    converter free online.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Can I convert JPEG to PDF?
+                </h4>
+
+                <p>
+
+                    Yes. The tool supports both JPG and JPEG
+                    image files.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Can I use this JPG to PDF converter on mobile?
+                </h4>
+
+                <p>
+
+                    Yes. The converter can be used on mobile phones,
+                    tablets and desktop browsers.
+
+                </p>
 
             </div>
 

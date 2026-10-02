@@ -5,34 +5,35 @@ Crop Image Online Free - PyToolsHub
 {% endblock %}
 
 {% block description %}
-Crop JPG, JPEG and PNG images online free with PyToolsHub.
+Crop JPG, JPEG and PNG images online free. Easily crop images for photos, forms, applications and social media.
 {% endblock %}
 
 {% block content %}
 
 <div class="container py-5">
 
+    <!-- =========================
+         TOOL
+    ========================= -->
+
     <div class="text-center mb-5">
 
         <h1 class="fw-bold display-5">
-
             Crop Image Online
-
         </h1>
 
-        <p class="lead">
-
+        <p class="lead mt-3">
             Crop JPG, JPEG and PNG images online free.
-
         </p>
 
     </div>
+
 
     <div class="row justify-content-center">
 
         <div class="col-md-6">
 
-            <div class="card shadow-lg p-5 rounded-4">
+            <div class="card main-card shadow-lg p-5">
 
                 <form method="POST"
                       enctype="multipart/form-data">
@@ -42,26 +43,24 @@ Crop JPG, JPEG and PNG images online free with PyToolsHub.
                     <div class="mb-4">
 
                         <label class="form-label fw-bold">
-
                             Upload Image
-
                         </label>
 
                         <input type="file"
                                name="image"
-                               class="form-control"
+                               class="form-control form-control-lg"
+                               accept=".jpg,.jpeg,.png"
                                required>
 
                     </div>
+
 
                     <div class="row">
 
                         <div class="col-6 mb-3">
 
                             <label class="fw-bold">
-
                                 Left
-
                             </label>
 
                             <input type="number"
@@ -71,12 +70,11 @@ Crop JPG, JPEG and PNG images online free with PyToolsHub.
 
                         </div>
 
+
                         <div class="col-6 mb-3">
 
                             <label class="fw-bold">
-
                                 Top
-
                             </label>
 
                             <input type="number"
@@ -86,12 +84,11 @@ Crop JPG, JPEG and PNG images online free with PyToolsHub.
 
                         </div>
 
+
                         <div class="col-6 mb-3">
 
                             <label class="fw-bold">
-
                                 Right
-
                             </label>
 
                             <input type="number"
@@ -101,12 +98,11 @@ Crop JPG, JPEG and PNG images online free with PyToolsHub.
 
                         </div>
 
+
                         <div class="col-6 mb-4">
 
                             <label class="fw-bold">
-
                                 Bottom
-
                             </label>
 
                             <input type="number"
@@ -118,6 +114,7 @@ Crop JPG, JPEG and PNG images online free with PyToolsHub.
 
                     </div>
 
+
                     <button type="submit"
                             class="btn btn-success btn-lg w-100">
 
@@ -125,23 +122,27 @@ Crop JPG, JPEG and PNG images online free with PyToolsHub.
 
                     </button>
 
+
                     <input type="hidden"
                            name="crop_submit"
                            value="1">
 
                 </form>
 
-                <!-- SUCCESS MESSAGE ONLY AFTER POST -->
+
+                <!-- SUCCESS -->
 
                 {% if cropped_image %}
 
                 <div class="alert alert-success text-center mt-4">
 
                     <h4>
-
-                        Image Cropped Successfully
-
+                        Image Cropped Successfully!
                     </h4>
+
+                    <p class="mt-2">
+                        Your cropped image is ready to download.
+                    </p>
 
                     <a href="{{ cropped_image }}"
                        download
@@ -161,118 +162,228 @@ Crop JPG, JPEG and PNG images online free with PyToolsHub.
 
     </div>
 
-    <!-- SEO CONTENT -->
-
-    <section class="py-5">
-
-        <div class="container">
-
-            <div class="card shadow border-0 rounded-4 p-5">
-
-                <h2 class="fw-bold mb-4">
-
-                    Crop Image Online Free
-
-                </h2>
-
-                <p>
-
-                    PyToolsHub lets you crop images online free.
-                    Upload JPG, JPEG or PNG images,
-                    set crop values,
-                    and download instantly.
-
-                </p>
-
-                <p>
-
-                    Useful for passport photos,
-                    profile pictures,
-                    government forms,
-                    exam applications
-                    and social media posts.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- FAQ -->
-
-    <section class="py-5">
-
-        <div class="container">
-
-            <div class="card shadow border-0 rounded-4 p-5">
-
-                <h2 class="fw-bold mb-4">
-
-                    Frequently Asked Questions
-
-                </h2>
-
-                <div class="mb-4">
-
-                    <h4>
-
-                        How to crop image online?
-
-                    </h4>
-
-                    <p>
-
-                        Upload your image,
-                        enter crop values
-                        and click crop image.
-
-                    </p>
-
-                </div>
-
-                <div class="mb-4">
-
-                    <h4>
-
-                        Is this crop image tool free?
-
-                    </h4>
-
-                    <p>
-
-                        Yes.
-                        Completely free.
-
-                    </p>
-
-                </div>
-
-                <div>
-
-                    <h4>
-
-                        Which image formats supported?
-
-                    </h4>
-
-                    <p>
-
-                        JPG,
-                        JPEG
-                        and PNG.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
 </div>
+
+
+<!-- =========================
+     SEO CONTENT
+========================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
+
+            <h2 class="fw-bold mb-4">
+                Crop Image Online Free
+            </h2>
+
+            <p class="lead">
+
+                PyToolsHub provides a free online image cropping tool
+                that allows you to crop JPG, JPEG and PNG images
+                directly from your browser.
+
+            </p>
+
+            <p>
+
+                Upload your image, enter the crop coordinates and
+                click the Crop Image button. Your cropped image
+                will then be ready for download.
+
+            </p>
+
+            <p>
+
+                The tool can be useful for preparing images for
+                profile pictures, applications, forms, passport
+                photos and other online requirements.
+
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             RELATED TOOLS
+        ========================= -->
+
+        <div class="card shadow border-0 rounded-4 p-5 mb-5">
+
+            <h2 class="fw-bold mb-4">
+                Related Image Tools
+            </h2>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'resize_image_to_20kb' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Resize Image to 20KB
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'resize_image_to_50kb' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Resize Image to 50KB
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'resize_image_to_100kb' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Resize Image to 100KB
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'passport_photo' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Passport Photo Maker
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'signature_resize' %}"
+                       class="btn btn-outline-success w-100">
+
+                        Signature Resize Tool
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'jpg_to_png' %}"
+                       class="btn btn-outline-success w-100">
+
+                        JPG to PNG Converter
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'png_to_jpg' %}"
+                       class="btn btn-outline-success w-100">
+
+                        PNG to JPG Converter
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             FAQ
+        ========================= -->
+
+        <div class="card shadow border-0 rounded-4 p-5">
+
+            <h2 class="fw-bold mb-4">
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    How can I crop an image online?
+                </h4>
+
+                <p>
+
+                    Upload your JPG, JPEG or PNG image, enter the
+                    crop values and click the Crop Image button.
+                    You can then download the cropped image.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Is this crop image tool free?
+                </h4>
+
+                <p>
+
+                    Yes. PyToolsHub provides this online image
+                    cropping tool free of charge.
+
+                </p>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <h4>
+                    Which image formats are supported?
+                </h4>
+
+                <p>
+
+                    The tool supports JPG, JPEG and PNG images.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Can I use the crop image tool on mobile?
+                </h4>
+
+                <p>
+
+                    Yes. The tool can be accessed from mobile phones,
+                    tablets and desktop browsers.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}
