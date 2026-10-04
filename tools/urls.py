@@ -219,20 +219,6 @@ urlpatterns = [
     ),
 
 
-    # =========================
-    # FILE HANDLING
-    # =========================
 
-    path(
-        'media/<str:filename>/',
-        views.media_file,
-        name='media_file'
-    ),
-
-    path(
-        'download/<str:filename>/',
-        views.download_file,
-        name='download_file'
-    ),
 
 ]

@@ -5,50 +5,46 @@ from django.urls import reverse
 class StaticViewSitemap(Sitemap):
 
     priority = 0.8
-    changefreq = 'weekly'
+    changefreq = "weekly"
 
     def items(self):
-
         return [
+            "home",
 
-            'home',
+            # Image tools
+            "image_tools",
+            "resize_image_to_20kb",
+            "resize_50kb",
+            "resize_100kb",
+            "passport_photo",
+            "signature_resize",
+            "jpg_to_png",
+            "png_to_jpg",
+            "crop_image_online",
 
-            'image_tools',
+            # PDF tools
+            "pdf_tools",
+            "jpg_to_pdf",
+            "pdf_to_jpg",
+            "merge_pdf",
+            "split_pdf",
+            "compress_pdf",
 
-            'pdf_tools',
+            # Calculator tools
+            "calculator_tools",
+            "age_calculator",
+            "percentage_calculator",
+            "bmi_calculator",
+            "cgpa_calculator",
+            "emi_calculator",
 
-            'resize_50kb',
-
-            'resize_100kb',
-
-            'passport_photo',
-
-            'signature_resize',
-
-            'jpg_to_png',
-
-            'png_to_jpg',
-
-            'jpg_to_pdf',
-
-            'pdf_to_jpg',
-
-            'merge_pdf',
-
-            'split_pdf',
-
-            'contact',
-
-            'about',
-
-            'privacy_policy',
-
-            'disclaimer',
-
-            'terms_conditions',
-
+            # Website pages
+            "about",
+            "contact",
+            "privacy_policy",
+            "disclaimer",
+            "terms_conditions",
         ]
 
     def location(self, item):
-
         return reverse(item)
