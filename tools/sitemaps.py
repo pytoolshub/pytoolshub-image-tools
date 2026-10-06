@@ -14,7 +14,7 @@ class StaticViewSitemap(Sitemap):
             # Image tools
             "image_tools",
             "resize_image_to_20kb",
-            "name='resize_image_to_50kb'",
+            "resize_image_to_50kb",
             "resize_image_to_100kb",
             "passport_photo",
             "signature_resize",
